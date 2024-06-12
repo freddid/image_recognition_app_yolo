@@ -2,6 +2,31 @@ from flask import Flask, render_template, request, jsonify
 import cv2
 import numpy as np
 import base64
+import requests
+import os
+
+# Функция загрузки весов YOLOv3
+def download_weights(url, file_path):
+    """
+    Загружает файл с удаленного URL и сохраняет его по указанному пути.
+    """
+    response = requests.get(url)
+    if response.status_code == 200:
+        with open(file_path, "wb") as f:
+            f.write(response.content)
+        print("Файл успешно загружен и сохранен:", file_path)
+    else:
+        print("Ошибка загрузки файла:", response.status_code)
+
+
+# URL и путь для сохранения весов
+weights_url = "https://github.com/patrick013/Object-Detection---Yolov3/raw/master/model/yolov3.weights"
+weights_path = "yolov3.weights"
+
+# Загрузка весов YOLOv3
+if not os.path.exists(weights_path):
+    download_weights(weights_url, weights_path)
+
 
 app = Flask(__name__)
 
