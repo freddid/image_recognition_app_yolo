@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Object Detection</title>
+</head>
+
+<body>
+   <div>
+      <h1>Upload an image to detect objects</h1>
+      <form action="/upload" method="post" enctype="multipart/form-data">
+         <input type="file" name="file">
+         <input type="submit" value="Upload">
+      </form>
+      <hr>
+      <h1>Or take a photo</h1>
+      <div>
+         <video id="video" width="640" height="480" autoplay></video>
+         <button id="snap">Snap Photo</button>
+         <canvas id="canvas" width="640" height="480" style="display:none;"></canvas>
+      </div>
+      <img id="result" src="#" alt="Result Image" style="display:none;" />
+   </div>
+   <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
